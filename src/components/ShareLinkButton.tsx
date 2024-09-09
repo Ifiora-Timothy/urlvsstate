@@ -2,13 +2,9 @@
 
 import { Share2 } from "lucide-react";
 import { Button } from "./ui/button";
-import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 
-type Props = {};
-
-const ShareLinkButton = (props: Props) => {
-  const [isCopied, setIsCopied] = useState(false);
+const ShareLinkButton = () => {
   const shareLink = () => {
     navigator.clipboard.writeText(window.location.href);
 
@@ -23,7 +19,6 @@ const ShareLinkButton = (props: Props) => {
 
     setTimeout(() => {
       newToast.dismiss();
-      setIsCopied(false);
     }, 3000);
   };
 

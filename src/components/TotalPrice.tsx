@@ -24,7 +24,7 @@ const TotalPrice = ({ sizes, toppings }: Props) => {
   const sauce = parseInt(searchParams.get("sauce") || "50");
   const selectedToppings = searchParams.get("toppings")?.split(",") || [];
 
-  const totalPrice = useMemo(() => {
+  useMemo(() => {
     if (searchParams.get("type") != "state") {
       const basePrice = sizes.find((s) => s.name === size)?.price || 0;
       const toppingsPrice = selectedToppings.reduce((total, topping) => {

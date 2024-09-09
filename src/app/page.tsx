@@ -5,7 +5,7 @@ import { CosmicPizzaStateCustomizer } from "@/components/PizzaUseState";
 import ShareLinkButton from "@/components/ShareLinkButton";
 import TotalPrice from "@/components/TotalPrice";
 import { Toaster } from "@/components/ui/toaster";
-import { ChefHat, Loader2, Pizza, Rocket, Share2 } from "lucide-react";
+import { ChefHat, Pizza, Rocket } from "lucide-react";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };

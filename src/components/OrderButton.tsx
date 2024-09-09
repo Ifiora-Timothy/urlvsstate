@@ -4,9 +4,7 @@ import { Button } from "./ui/button";
 import { Loader2 } from "lucide-react";
 import usePizza from "@/hooks/usePizza";
 
-type Props = {};
-
-const OrderButton = (props: Props) => {
+const OrderButton = () => {
   const { totalPrice } = usePizza();
   const [isOrdering, setIsOrdering] = useState(false);
   const simulateOrder = () => {
