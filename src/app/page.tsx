@@ -30,10 +30,10 @@ export default function Home({ searchParams }: Props) {
   const type = (searchParams.type as string) ?? "url";
 
   return (
-    <div className="grid h-full items-center justify-items-center ">
+    <div className="grid h-full items-center justify-items-center w-screen overflow-x-hidden ">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="min-h-screen flex items-center justify-center p-4">
-          <div className="bg-yellow-100 rounded-xl p-8 max-w-4xl w-full space-y-6 relative overflow-hidden shadow-2xl">
+        <div className="min-h-screen flex w-screen  items-center justify-center overflow-hidden p-4 sm:pr-6">
+          <div className="bg-yellow-100 rounded-xl p-8 w-full max-w-[800px] space-y-6 relative  shadow-2xl">
             <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
               <img
                 src="/placeholder.svg?height=800&width=600"
@@ -41,10 +41,10 @@ export default function Home({ searchParams }: Props) {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h1 className="text-4xl font-bold text-center text-red-600 mb-6 relative z-10 flex items-center justify-center">
-              <ChefHat className="w-10 h-10 mr-2" />
+            <h1 className="text-lg gap-2 sm:text-4xl font-bold text-center text-red-600 mb-6 relative z-10 flex items-center justify-center">
+              <ChefHat className="sm:sixe-10 size-8 mr-1 sm:mr-2" />
               Cosmic Pizza Creator
-              <Rocket className="w-10 h-10 ml-2" />
+              <Rocket className="sm:sixe-10 size-8  mr-1 sm:mr-2" />
             </h1>
 
             <PizzaSwitch />

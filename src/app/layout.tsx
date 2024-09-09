@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className=" bg-gradient">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-fit  bg-gradient-to-br from-orange-400 to-red-600`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-fit w-screen overflow-x-hidden  bg-gradient-to-br from-orange-400 to-red-600`}
       >
         <PizzaProvider>{children}</PizzaProvider>
         <Toaster />

@@ -52,14 +52,14 @@ export function CosmicPizzaStateCustomizer() {
 
   return (
     <div className="contents">
-      <div className="space-y-4">
-        <Label className="text-lg font-semibold text-red-600">
+      <div className="space-y-4 flex flex-col items-center sm:items-start">
+        <Label className="text-lg  font-semibold text-red-600">
           Choose Your Stellar Size
         </Label>
         <RadioGroup
           value={size}
           onValueChange={setSize}
-          className="flex flex-wrap gap-4"
+          className="flex flex-wrap justify-center sm:justify-start  gap-4"
         >
           {sizes.map((s) => (
             <Label
@@ -76,7 +76,7 @@ export function CosmicPizzaStateCustomizer() {
         </RadioGroup>
       </div>
 
-      <div className="space-y-3 mt-6">
+      <div className="space-y-3 flex flex-col items-center sm:items-start mt-6">
         <Label className="text-lg font-semibold text-red-600">
           Cosmic Sauce Intensity
         </Label>
@@ -95,11 +95,11 @@ export function CosmicPizzaStateCustomizer() {
         </div>
       </div>
 
-      <div className="space-y-3 mt-6">
+      <div className="space-y-3  flex flex-col items-center sm:items-start  mt-6">
         <Label className="text-lg font-semibold text-red-600">
           Intergalactic Toppings
         </Label>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {toppings.map((topping) => (
             <Button
               key={topping.name}
