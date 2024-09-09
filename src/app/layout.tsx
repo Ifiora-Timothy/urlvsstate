@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toast, ToastProvider } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
+import { PizzaProvider } from "@/providers/PizzaContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,11 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className=" bg-gradient">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-fit  bg-gradient-to-br from-orange-400 to-red-600`}
       >
-        {children}
+        <PizzaProvider>{children}</PizzaProvider>
+        <Toaster />
       </body>
     </html>
   );

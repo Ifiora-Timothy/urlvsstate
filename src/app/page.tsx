@@ -1,101 +1,93 @@
-import Image from "next/image";
+import OrderButton from "@/components/OrderButton";
+import PizzaSwitch from "@/components/PizzaSwitch";
+import { CosmicPizzaCustomizer } from "@/components/PizzaURL";
+import { CosmicPizzaStateCustomizer } from "@/components/PizzaUseState";
+import ShareLinkButton from "@/components/ShareLinkButton";
+import TotalPrice from "@/components/TotalPrice";
+import { Toaster } from "@/components/ui/toaster";
+import { ChefHat, Loader2, Pizza, Rocket, Share2 } from "lucide-react";
 
-export default function Home() {
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+const toppings: {
+  name: string;
+  icon: string;
+  price: number;
+}[] = [
+  { name: "Stardust Cheese", icon: "🧀", price: 2 },
+  { name: "Meteor Meatballs", icon: "🍖", price: 3 },
+  { name: "Alien Veggies", icon: "🥦", price: 2 },
+  { name: "Cosmic Pepperoni", icon: "🍕", price: 2.5 },
+];
+const sizes = [
+  { name: "Small", price: 10, icon: "🛸" },
+  { name: "Medium", price: 12, icon: "🚀" },
+  { name: "Large", price: 14, icon: "🛰️" },
+  { name: "Galactic", price: 16, icon: "🌌" },
+];
+export default function Home({ searchParams }: Props) {
+  const type = (searchParams.type as string) ?? "url";
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid h-full items-center justify-items-center ">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <div className="bg-yellow-100 rounded-xl p-8 max-w-4xl w-full space-y-6 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+              <img
+                src="/placeholder.svg?height=800&width=600"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h1 className="text-4xl font-bold text-center text-red-600 mb-6 relative z-10 flex items-center justify-center">
+              <ChefHat className="w-10 h-10 mr-2" />
+              Cosmic Pizza Creator
+              <Rocket className="w-10 h-10 ml-2" />
+            </h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <PizzaSwitch />
+
+            <div className="flex flex-wrap md:flex-nowrap gap-8">
+              <div className="w-full md:w-1/2 space-y-6 relative z-10">
+                {type === "state" ? (
+                  <CosmicPizzaStateCustomizer />
+                ) : (
+                  <CosmicPizzaCustomizer />
+                )}
+              </div>
+
+              <div className="w-full md:w-1/2 flex flex-col justify-between">
+                <div className="relative grid">
+                  <div className="aspect-square w-[220px] justify-self-center bg-red-200  rounded-full shadow-lg border-8 border-yellow-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative bg-gren-200 size-52 rounded-full ">
+                      <Pizza className="size-24 right-[-2px] top-[18px] rotate-[102deg] text-red-500 absolute animate-spin-slow" />
+                      <Pizza className="size-24 right-[-7px] top-[84px] rotate-[162deg] text-red-500 absolute animate-spin-slow" />
+                      <Pizza className="size-24 right-[47px] bottom-[-10px] rotate-[222deg] text-red-500 absolute animate-spin-slow" />
+                      <Pizza className="size-24 left-[4px] bottom-[16px] rotate-[279deg] text-red-500 absolute animate-spin-slow" />
+                      <Pizza className="size-24  left-[-7px] top-[30px] rotate-[336deg] text-red-500 absolute animate-spin-slow" />
+                      <Pizza className="size-24  left-[50px] top-[-10px] rotate-[37deg] text-red-500 absolute animate-spin-slow" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mt-6">
+                  <div className="text-3xl font-bold text-center text-red-600 bg-yellow-200 rounded-full py-2 shadow-inner">
+                    Total: $<TotalPrice sizes={sizes} toppings={toppings} />
+                  </div>
+
+                  <ShareLinkButton />
+                  <OrderButton />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <Toaster />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
